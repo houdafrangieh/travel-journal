@@ -1,0 +1,196 @@
+.main .disclaimer {
+  font-style: italic !important;
+  color: grey !important;
+}
+
+.header{
+    background-color: #561C24;
+    padding: 20px;
+    display: flex;
+    color: white;
+    justify-content: center;
+    font-size: large;
+};
+.footer {
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  color: #561C24;
+}
+body{
+    background-color: #e8d8c4;
+}
+
+article.journal-entry {
+display: flex;
+}
+article.journal-entry img {
+  width: 200px;
+  height: auto;
+  margin-right: 20px;
+}
+
+/* Add these new styles */
+.suggestion-button {
+  background-color: #561C24;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px 0;
+  font-size: 16px;
+}
+
+.suggestion-button:hover {
+  background-color: #3a1319;
+}
+
+.destination-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.destination-form input,
+.destination-form textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.destination-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.destination-form button[type="submit"] {
+  background-color: #2e7d32;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.like-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #561C24;
+  padding: 5px 10px;
+  margin-top: 10px;
+}
+
+.entry-content {
+  flex: 1;
+}
+
+/* Sign Up Button in Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.signup-button {
+  background-color: white;
+  color: #561C24;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.signup-button:hover {
+  background-color: #f0f0f0;
+}
+
+.welcome-message {
+  font-size: 14px;
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Sign Up Form Styles */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.signup-form input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.signup-form button {
+  background-color: #561C24;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.signup-form button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.error {
+  color: red;
+  margin: 0;
+}
+
+.success {
+  color: green;
+  margin: 0;
+}
+
+/* Author style in journal entries */
+.author {
+  font-style: italic;
+  color: #666;
+  font-size: 14px;
+}
