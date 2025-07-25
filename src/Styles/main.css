@@ -1,51 +1,92 @@
-.main .disclaimer {
-  font-style: italic !important;
-  color: grey !important;
+body {
+  background-color: #e8d8c4;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
-.header{
-    background-color: #561C24;
-    padding: 20px;
-    display: flex;
-    color: white;
-    justify-content: center;
-    font-size: large;
-};
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background-color: #561C24;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
 .footer {
   text-align: center;
   padding: 1rem;
   margin-top: 2rem;
   color: #561C24;
 }
-body{
-    background-color: #e8d8c4;
+
+/* Journal Entries */
+.journal-entry {
+  display: flex;
+  margin-bottom: 30px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-article.journal-entry {
-display: flex;
-}
-article.journal-entry img {
-  width: 200px;
-  height: auto;
-  margin-right: 20px;
+.journal-image {
+  width: 250px;
+  height: 200px;
+  object-fit: cover;
 }
 
-/* Add these new styles */
-.suggestion-button {
-  background-color: #561C24;
-  color: white;
-  padding: 10px 15px;
+.entry-content {
+  padding: 20px;
+  flex: 1;
+}
+
+.location {
+  margin: 0 0 5px 0;
+  color: #561C24;
+}
+
+.duration {
+  margin: 0 0 15px 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.author {
+  font-style: italic;
+  color: #666;
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
+
+.like-button {
+  background: none;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
-  margin: 20px 0;
-  font-size: 16px;
+  color: #561C24;
+  padding: 5px 10px;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-.suggestion-button:hover {
-  background-color: #3a1319;
-}
-
+/* Forms */
 .destination-form {
   display: flex;
   flex-direction: column;
@@ -61,7 +102,7 @@ article.journal-entry img {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .destination-form textarea {
@@ -72,33 +113,50 @@ article.journal-entry img {
 .destination-form button[type="submit"] {
   background-color: #2e7d32;
   color: white;
-  padding: 10px;
+  padding: 12px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
 }
 
-.like-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  color: #561C24;
-  padding: 5px 10px;
-  margin-top: 10px;
+.destination-form button[type="submit"]:hover {
+  background-color: #1b5e20;
 }
 
-.entry-content {
-  flex: 1;
+.destination-form button[type="submit"][disabled] {
+  background-color: #9e9e9e;
+  cursor: wait;
+  position: relative;
+  padding-left: 40px;
 }
 
-/* Sign Up Button in Header */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.destination-form button[type="submit"][disabled]::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
+@keyframes spin {
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+
+.image-error {
+  color: #d32f2f;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Sign Up Styles */
 .signup-button {
   background-color: white;
   color: #561C24;
@@ -106,7 +164,8 @@ article.journal-entry img {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
 }
 
 .signup-button:hover {
@@ -114,17 +173,16 @@ article.journal-entry img {
 }
 
 .welcome-message {
-  font-size: 14px;
+  font-size: 0.9rem;
 }
 
-/* Modal Styles */
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0,0,0,0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -146,51 +204,31 @@ article.journal-entry img {
   right: 10px;
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 1.5rem;
   cursor: pointer;
+  color: #666;
 }
 
-/* Sign Up Form Styles */
-.signup-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.signup-form input {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-.signup-form button {
-  background-color: #561C24;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.signup-form button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
-
-.error {
-  color: red;
-  margin: 0;
-}
-
-.success {
-  color: green;
-  margin: 0;
-}
-
-/* Author style in journal entries */
-.author {
+.disclaimer {
   font-style: italic;
   color: #666;
-  font-size: 14px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.suggestion-button {
+  background-color: #561C24;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.suggestion-button:hover {
+  background-color: #3a1319;
 }

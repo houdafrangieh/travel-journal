@@ -13,6 +13,32 @@ function App({ data }) {
   const [showForm, setShowForm] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [isImageLoading, setIsImageLoading] = useState(false);
+  const [imageError, setImageError] = useState(null);
+
+  const fetchDestinationImage = async (location) => {
+    setIsImageLoading(true);
+    setImageError(null);
+    try {
+      const cleanLocation = location.replace(/[^\w\s]/gi, '').trim();
+      const response = await fetch(
+        `https://pixabay.com/api/?key=${process.env.REACT_APP_PIXABAY_KEY}&q=${cleanLocation}`
+      );
+      const data = await response.json();
+      return {
+        src: data.hits[0]?.webformatURL || "src/Assets/Images/default.jpg",
+        alt: `Image of ${cleanLocation}`
+      };
+    } catch (error) {
+      setImageError("Couldn't load image - using default");
+      return {
+        src: "src/Assets/Images/default.jpg",
+        alt: "Default destination"
+      };
+    } finally {
+      setIsImageLoading(false);
+    }
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,16 +48,19 @@ function App({ data }) {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const imgData = await fetchDestinationImage(newDestination.location);
+    
     const newEntry = {
       id: entries.length + 1,
-      img: { src: "src/Assets/Images/default.jpg", alt: "Default destination" },
+      img: imgData,
       location: newDestination.location,
       duration: newDestination.duration,
       description: newDestination.description,
       author: currentUser || 'Anonymous'
     };
+    
     setEntries([...entries, newEntry]);
     setNewDestination({ location: '', duration: '', description: '' });
     setShowForm(false);
@@ -42,19 +71,17 @@ function App({ data }) {
     setShowSignUp(false);
   };
 
-  const entryElements = entries.map((entry) => {
-    return (
-      <JournalEntry 
-        key={entry.id}
-        img={entry.img.src}
-        alt={entry.img.alt}
-        location={entry.location}
-        duration={entry.duration}
-        description={entry.description}
-        author={entry.author}
-      />
-    );
-  });
+  const entryElements = entries.map((entry) => (
+    <JournalEntry 
+      key={entry.id}
+      img={entry.img.src}
+      alt={entry.img.alt}
+      location={entry.location}
+      duration={entry.duration}
+      description={entry.description}
+      author={entry.author}
+    />
+  ));
   
   return (
     <div className="container">
@@ -126,7 +153,10 @@ function App({ data }) {
                   placeholder="Tell us about this destination..."
                   required
                 />
-                <button type="submit">Submit Suggestion</button>
+                <button type="submit" disabled={isImageLoading}>
+                  {isImageLoading ? 'Finding images...' : 'Submit Suggestion'}
+                </button>
+                {imageError && <p className="image-error">{imageError}</p>}
               </form>
             )}
           </>
