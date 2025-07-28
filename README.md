@@ -32,3 +32,13 @@ but no real APIs were used.
 The next destination suggestion feature is shown once the user signs in. (1st attempt)
 Then i kept the signup function to make it more practical
 
+## Date: 25 / 07 / 2025
+Real Key for API
+### -Tasks:
+Learned how to keep the key private.
+Integrated it inside the code to get real images generated.
+
+## Date: 26 / 07 / 2025
+Downloaded TailwindCSS for easier styling!
+### -Tasks:
+

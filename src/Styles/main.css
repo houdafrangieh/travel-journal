@@ -1,3 +1,13 @@
+@import "tailwindcss";
+/* main.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom animations */
+@keyframes spin {
+  to { transform: translateY(-50%) rotate(360deg); }
+}
 body {
   background-color: #e8d8c4;
   margin: 0;
