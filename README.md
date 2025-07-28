@@ -40,5 +40,12 @@ Integrated it inside the code to get real images generated.
 
 ## Date: 26 / 07 / 2025
 Downloaded TailwindCSS for easier styling!
+
+## Date: 28 / 07 /2025
+React Router and TailwindCSS styling
 ### -Tasks:
+Created new components so i can add React Router for navigation
+fully integrated Tailwind
+added new hooks (useNavigate, useLocation, useCallback)
+made the design more responsive
 
