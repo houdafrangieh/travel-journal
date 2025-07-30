@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 
-export default function JournalEntry(props) {
+function JournalEntryComponent(props) {
     const [likes, setLikes] = useState(0);
     const [isLiked, setIsLiked] = useState(false);
     
@@ -19,6 +19,7 @@ export default function JournalEntry(props) {
                 src={props.img} 
                 alt={props.alt} 
                 className="w-64 h-48 object-cover" 
+                loading="lazy"
             />
             <div className="p-5 flex-1">
                 <h2 className="text-xl font-semibold text-rose-900 mb-1">{props.location}</h2>
@@ -39,3 +40,5 @@ export default function JournalEntry(props) {
         </article>
     );
 }
+
+export default memo(JournalEntryComponent);

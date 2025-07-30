@@ -18,17 +18,32 @@ export default function SignUpForm({ onSignUp }) {
     }));
   };
 
+  const validateForm = () => {
+    if (!formData.username.trim()) {
+      setError('Username is required');
+      return false;
+    }
+    if (!formData.email.includes('@')) {
+      setError('Please enter a valid email');
+      return false;
+    }
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters');
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess('');
-    setIsSubmitting(true);
-
-    if (!formData.username || !formData.email || !formData.password) {
-      setError('Please fill in all fields');
-      setIsSubmitting(false);
+    
+    if (!validateForm()) {
       return;
     }
+
+    setIsSubmitting(true);
 
     try {
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -70,16 +85,22 @@ export default function SignUpForm({ onSignUp }) {
         name="password"
         value={formData.password}
         onChange={handleChange}
-        placeholder="Password"
+        placeholder="Password (min 6 characters)"
         required
+        minLength={6}
         className="p-3 border border-gray-300 rounded-md"
       />
       <button 
         type="submit" 
         disabled={isSubmitting}
-        className={`bg-rose-900 text-white p-3 rounded-md ${isSubmitting ? 'opacity-75 cursor-wait' : 'hover:bg-rose-800'} transition-colors`}
+        className={`bg-rose-900 text-white p-3 rounded-md ${isSubmitting ? 'opacity-75 cursor-wait' : 'hover:bg-rose-800'} transition-colors relative`}
       >
-        {isSubmitting ? 'Signing Up...' : 'Sign Up'}
+        {isSubmitting ? (
+          <>
+            Signing Up...
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+          </>
+        ) : 'Sign Up'}
       </button>
     </form>
   );
